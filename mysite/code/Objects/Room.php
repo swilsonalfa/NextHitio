@@ -15,6 +15,10 @@ class Room extends DataObject {
 	);
 	
 	private static $has_one = array(
-		"Owner"		=> "Member"
+		"Owner"			=> "Member"
+	);
+	
+	private static $has_many = array(
+		"Options"		=> "Option"
 	);
 }

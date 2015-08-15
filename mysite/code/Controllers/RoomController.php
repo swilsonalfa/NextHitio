@@ -35,7 +35,7 @@ class RoomController extends MainController {
 			$room->write();
 			
 			// render the template
-			return $this->customise(array("Content" => $this->renderWith("room_view")));
+			return $this->customise(array("Content" => $this->renderWith("room_view", array($this, "Room" => $room))));
 		}
 	}
 	
