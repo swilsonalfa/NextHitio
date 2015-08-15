@@ -1,7 +1,7 @@
 ---
-Name: mysiteroutes
-After: framework/routes#coreroutes
+Name: rootroutes
 ---
 Director:
   rules:
-    '$Action/$ID': 'MainController'
+    '': 'MainController'
+    'room//$Action/$ID': 'RoomController'

@@ -14,6 +14,6 @@ class MainController extends Controller {
 	}
 	
 	public function index() {
-		return $this->customise(array("Content" => "helllo"));
+		return $this->customise(array("Content" => $this->renderWith("index")));
 	}
 }
