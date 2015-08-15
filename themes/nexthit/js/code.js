@@ -24,5 +24,4 @@ $(document).ready(function(){
 	    });
 	    return false; // cancel original event to prevent form submitting
 	});
-
 });

@@ -5,7 +5,9 @@
 	        	<h3>Register</h3>
 	        	<p>Register for an account below. Type in your mobile number and we'll send you a text message to verify your account.</p>
 	        	
-	        	<form class="form-horizontal ajaxform" method="post" action="{$Link}register/go">
+	        	<div id="registerformresponse"></div>
+	        	
+	        	<form class="form-horizontal ajaxform" method="post" name="registerform" action="{$Link}register/go">
 				  <div class="form-group">
 				    <label for="mobilenumber" class="col-sm-2 control-label">Mobile Number</label>
 				    <div class="col-sm-10">

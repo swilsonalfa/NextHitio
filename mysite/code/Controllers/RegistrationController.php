@@ -2,7 +2,8 @@
 class RegistrationController extends MainController {
 	private static $allowed_actions = array(
 			'index',
-			'go'
+			'go', // ajax call for inital register page
+			'step2'
 	);
 	
 	public function init() {
@@ -11,6 +12,10 @@ class RegistrationController extends MainController {
 	
 	public function index($request) {
 		return $this->customise(array("Content" => $this->renderWith("register_index", $this)));
+	}
+	
+	public function step2($request) {
+		return $this->customise(array("Content" => $this->renderWith("register_step2", $this)));
 	}
 	
 	public function go($request) {
@@ -25,9 +30,9 @@ class RegistrationController extends MainController {
 			}
 			
 			// check to see if there is already a member with this mobile number
-			$member = Member::get()->filter(array("MobileNumber" => $mobilenumber));
+			$member = Member::get_one("Member", "MobileNumber = $mobilenumber");
 			
-			if($member->count() && !empty($mobilenumber)) {
+			if(($member && empty($member->MobileConfirm)) && !empty($mobilenumber)) {
 				$errors[] = "A user already exists with that mobile number.";
 			}
 			
@@ -35,12 +40,12 @@ class RegistrationController extends MainController {
 				$returnArray = array();
 				
 				$returnArray["success"] = false;
-				$returnArray["errors"] = $errors;
+				$returnArray["errorstring"] = "<div class=\"alert alert-info\">".implode(", ", $errors)."</div>";
 				
 				return json_encode($returnArray);
 			} else {
 				// Create the member
-				$member = new Member();
+				if(!$member) $member = new Member();
 				$member->MobileNumber = $mobilenumber;
 				$member->MobileConfirm = mt_rand(100000, 999999);
 				$memberID = $member->write();
