@@ -15,6 +15,12 @@ class MainController extends Controller {
 	}
 	
 	public function index($request) {
-		return $this->customise(array("Content" => $this->renderWith("index")));
+		$roomAction = $this->request->param("Action");
+		
+		if(!empty($roomAction)) {
+			$this->redirect("/room/".$roomAction);
+		}
+		
+		return $this->customise(array("Content" => $this->renderWith("index", $this)));
 	}
 }
