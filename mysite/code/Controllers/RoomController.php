@@ -12,7 +12,8 @@ class RoomController extends MainController {
 	);
 	
 	public function index($request) {
-		return $this->customise(array("Content" => $this->renderWith("room_index")));
+		//return $this->customise(array("Content" => $this->renderWith("room_index")));
+		$this->redirect("/");
 	}
 	
 	public function viewRoom($request) {
@@ -29,7 +30,12 @@ class RoomController extends MainController {
 			Session::set("SessionError", "No room exists with that name");
 			$this->redirect("/");
 		} else {
+			// Room exists, Increase the view count
+			$room->Views++;
+			$room->write();
 			
+			// render the template
+			return $this->customise(array("Content" => $this->renderWith("room_view")));
 		}
 	}
 	
@@ -69,6 +75,7 @@ class RoomController extends MainController {
 				$room = new Room();
 				$room->Segment = $roomNameSegment;
 				$room->Title = $roomname;
+				$room->Type = "Music"; // only do music right now
 				$roomID = $room->write();
 				
 				if($roomID) {

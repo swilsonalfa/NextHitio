@@ -11,7 +11,7 @@
 	    <label for="eventname">My event is called</label>
 	    <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Sarah's Birthday">
 	  </div>
-	  <button type="submit" class="btn btn-default">Go</button>
+	  <button type="submit" class="btn btn-success">Create</button>
 	</form>
   </div>
 </div>

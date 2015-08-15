@@ -5,7 +5,13 @@ class Room extends DataObject {
 		"Title"			=> "Varchar(250)",
 		"Singular"		=> "Varchar(250)",
 		"Plural"		=> "Varchar(250)",
-		"Description"	=> "Text"
+		"Description"	=> "Text",
+		"Views"			=> "Int",
+		"Type"			=> "Enum('Music,Pizza','Music')"
+	);
+	
+	private static $defaults = array(
+		"Views"			=> "0"
 	);
 	
 	private static $has_one = array(
