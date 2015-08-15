@@ -1,0 +1,18 @@
+{
+	"name" : "swilsonalfa/nexthitio",
+	"authors" : [{
+			"name" : "Stewart Wilson",
+			"email" : "stewart.wilson@paduafinancialgroup.com.au"
+		}
+	],
+	"require" : {
+		"silverstripe/framework" : "3.1.13",
+		"gdmedia/ss-auto-git-ignore" : "0.0.3"
+	},
+	"scripts" : {
+		"post-update-cmd" : [
+			"GDM\\SSAutoGitIgnore\\UpdateScript::Go"
+		]
+	},
+	"minimum-stability" : "dev"
+}
