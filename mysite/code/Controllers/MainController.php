@@ -21,6 +21,13 @@ class MainController extends Controller {
 			$this->redirect("/room/".$roomAction);
 		}
 		
-		return $this->customise(array("Content" => $this->renderWith("index", $this)));
+		$sessionError = "";
+		
+		if(Session::get("SessionError")) {
+			$sessionError = Session::get("SessionError");
+			Session::clear("SessionError");
+		}
+		
+		return $this->customise(array("Content" => $this->renderWith("index", array($this, "SessionError" => $sessionError))));
 	}
 }

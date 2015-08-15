@@ -1,12 +1,36 @@
 <?php
 class RoomController extends MainController {
 	private static $allowed_actions = array(
-			'index',
-			'createajax'
+			'createajax',
+			'viewRoom'
+	);
+	
+	private static $url_handlers = array(
+			'' 				=> 'index',
+			'createajax' 	=> 'createajax',
+			'$Room'			=> 'viewRoom'
 	);
 	
 	public function index($request) {
 		return $this->customise(array("Content" => $this->renderWith("room_index")));
+	}
+	
+	public function viewRoom($request) {
+		$roomName = $this->request->param("Room");
+		
+		if(empty($roomName)) {
+			$this->redirect("/");
+		}
+		
+		// Check if the room exists
+		$room = Room::get_one("Room", "Segment = '$roomName'");
+		
+		if(!$room) {
+			Session::set("SessionError", "No room exists with that name");
+			$this->redirect("/");
+		} else {
+			
+		}
 	}
 	
 	public function createajax($request) {

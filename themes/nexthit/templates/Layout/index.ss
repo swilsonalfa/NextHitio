@@ -2,6 +2,9 @@
   <div class="container">
     <h2>Start your NextHit</h2>
     <h3>People powered music. Vote for your favourite music.</h3>
+    <% if $SessionError %>
+    <div class="alert alert-danger">$SessionError</div>
+    <% end_if %>
     <div id="roomformresponse"></div>
     <form class="form-inline ajaxform" method="post" name="roomform" action="/room/createajax">
 	  <div class="form-group">
