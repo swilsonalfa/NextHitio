@@ -15,7 +15,14 @@ class RegistrationController extends MainController {
 	}
 	
 	public function step2($request) {
-		return $this->customise(array("Content" => $this->renderWith("register_step2", $this)));
+		// Check if the sessions exist first
+		if(Session::get("RegisterMember") && Session::get("RegisterMemberID")) {
+			
+			
+			return $this->customise(array("Content" => $this->renderWith("register_step2", $this)));
+		} else {
+			$this->redirect($this->Link(), 403);
+		}
 	}
 	
 	public function go($request) {
@@ -55,6 +62,10 @@ class RegistrationController extends MainController {
 					$config = Config::inst()->get('TelstraAPI', 'Keys');
 					$sms = new TelstraSMS($config['consumer'], $config['secret'], $mobilenumber, "Your NextHit verification code is: ".$member->MobileConfirm);
 					$sms->send();
+					
+					// register a session with the mobile number
+					Session::set("RegisterNumber", $mobilenumber);
+					Session::set("RegisterMemberID", $memberID);
 					
 					$returnArray = array();
 					
