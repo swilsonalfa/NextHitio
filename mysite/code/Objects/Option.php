@@ -22,14 +22,26 @@ class Option extends DataObject {
 		$votes = $this->Votes();
 		$votes = $votes->Filter(array("Positive" => true));
 		
-		return $votes->Count();
+		$count = 0;
+		
+		foreach($votes as $vote) {
+			$count += $vote->Weight;
+		}
+		
+		return $count;
 	}
 	
 	public function getTotalNegative() {
 		$votes = $this->Votes();
 		$votes = $votes->Filter(array("Positive" => false));
 	
-		return $votes->Count();
+		$count = 0;
+		
+		foreach($votes as $vote) {
+			$count += $vote->Weight;
+		}
+		
+		return $count;
 	}
 	
 	public function getPos() {

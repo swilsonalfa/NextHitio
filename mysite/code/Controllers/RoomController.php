@@ -3,13 +3,15 @@ class RoomController extends MainController {
 	private static $allowed_actions = array(
 			'createajax',
 			'viewRoom',
-			'addOption'
+			'addOption',
+			'registervote'
 	);
 	
 	private static $url_handlers = array(
 			'' 				=> 'index',
 			'createajax' 	=> 'createajax',
 			'addOption'		=> 'addOption',
+			'registervote'	=> 'registervote',
 			'$Room'			=> 'viewRoom'
 	);
 	
@@ -142,6 +144,22 @@ class RoomController extends MainController {
 				return json_encode($returnArray);
 			}
 		}
+	}
+	
+	public function registervote() {
+		$pos = ($_GET['pos'] == "true" ? true : false);
+		$roomid = Convert::raw2sql($_GET['roomid']);
+		$optionid = Convert::raw2sql($_GET['optionid']);
+		
+		$option = Option::get_by_id("Option", $optionid);
+		
+		if($option) {
+			$vote = new Vote();
+			$vote->Positive = $pos;
+			$vote->ParentID = $option->ID;
+			$voteID = $vote->write();
+		}
+		
 	}
 	
 	public function generateSegment($name) {

@@ -41,3 +41,12 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function registervote(pos, roomid, optionid) {
+	$.ajax({
+		  url: "/room/registervote?pos="+pos+"&roomid="+roomid+"&optionid="+optionid,
+		  context: document.body
+		}).done(function() {
+			location.reload();
+		});
+}

@@ -39,7 +39,7 @@
         			<span class="artist">$Artist</span>
         			$Position
         			<div class="buttons">
-        			<button class="btn btn-success"><i class="glyphicon glyphicon-menu-up"></i></button> <button class="btn btn-danger"><i class="glyphicon glyphicon-menu-down"></i></button>
+        			<button class="btn btn-success" onclick="registervote(true,$Top.Room.ID,$ID,this);"><i class="glyphicon glyphicon-menu-up"></i></button> <button class="btn btn-danger" onclick="registervote(false,$Top.Room.ID,$ID,this);"><i class="glyphicon glyphicon-menu-down"></i></button>
         			</div>
         			<div style="clear: both;"></div>
         		</li>
