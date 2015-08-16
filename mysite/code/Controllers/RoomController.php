@@ -151,7 +151,16 @@ class RoomController extends MainController {
 		$roomid = Convert::raw2sql($_GET['roomid']);
 		$optionid = Convert::raw2sql($_GET['optionid']);
 		
+		$nonce = $_POST["payment_method_nonce"];
+		
 		$option = Option::get_by_id("Option", $optionid);
+		
+		if(isset($_POST["payment_method_nonce"])) {
+			$result = Braintree_Transaction::sale([
+					'amount' => '1.00',
+					'paymentMethodNonce' => $nonce
+			]);
+		}
 		
 		if($option) {
 			$vote = new Vote();

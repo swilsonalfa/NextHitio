@@ -11,6 +11,7 @@ class MainController extends Controller {
 		Requirements::javascript($this->ThemeDir()."/js/jquery-1.11.3.min.js");
 		Requirements::javascript($this->ThemeDir()."/bootstrap/js/bootstrap.min.js");
 		Requirements::javascript($this->ThemeDir()."/js/typeahead.js");
+		Requirements::javascript("https://js.braintreegateway.com/v2/braintree.js");
 		Requirements::javascript($this->ThemeDir()."/js/code.js");
 		
 		parent::init();
