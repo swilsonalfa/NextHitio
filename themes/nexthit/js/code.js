@@ -43,8 +43,9 @@ $(document).ready(function(){
 });
 
 function registervote(pos, roomid, optionid) {
+	var payment = $('[name=payment_method_nonce]').val();
 	$.ajax({
-		  url: "/room/registervote?pos="+pos+"&roomid="+roomid+"&optionid="+optionid,
+		  url: "/room/registervote?pos="+pos+"&roomid="+roomid+"&optionid="+optionid+"&payment="+payment,
 		  context: document.body
 		}).done(function() {
 			//location.reload();

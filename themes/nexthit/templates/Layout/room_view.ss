@@ -18,7 +18,7 @@
 				  <div class="form-group">
 				    <label for="mobilenumber" class="col-sm-2 control-label">Boost Vote?</label>
 				    <div class="col-sm-10">
-				      <input type="checkbox" id="boostpost" onclick="showboostform();"> You can boost your vote for $1
+				      <input type="checkbox" id="boostpost" name="boostvote" onclick="showboostform();"> You can boost your vote for $1
 				    </div>
 				  </div>
 				  <div id="payment-form" style="display: none;"></div>
