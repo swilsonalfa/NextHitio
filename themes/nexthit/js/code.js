@@ -48,7 +48,7 @@ function registervote(pos, roomid, optionid) {
 		  url: "/room/registervote?pos="+pos+"&roomid="+roomid+"&optionid="+optionid+"&payment="+payment,
 		  context: document.body
 		}).done(function() {
-			//location.reload();
+			location.reload();
 		});
 }
 
