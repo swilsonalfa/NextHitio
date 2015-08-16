@@ -24,4 +24,18 @@ $(document).ready(function(){
 	    });
 	    return false; // cancel original event to prevent form submitting
 	});
+	
+	$('input.typeahead').typeahead({
+		onSelect: function(item) {
+	        console.log(item);
+	    },
+	    item: '<li id="songResult"><a href="#"></a></li><div style="clear: both;"></div>',
+		ajax: {
+			url: "/song",
+			timeout: 500,
+			loadingClass: "loading",
+			triggerLength: 3,
+			displayField: 'html'
+		}
+	});
 });

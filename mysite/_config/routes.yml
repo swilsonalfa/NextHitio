@@ -5,4 +5,5 @@ Director:
   rules:
     'room//$Action/$ID': 'RoomController'
     'register//$Action/$ID': 'RegistrationController'
+    'song': 'SongSearchController'
     '$Action': 'MainController'

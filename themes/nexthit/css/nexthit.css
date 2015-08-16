@@ -1,0 +1,12 @@
+#songResult .img {
+	float: left;
+	padding: 5px;
+}
+
+#songResult .title {
+	font-size: 16px;
+}
+
+#songResult .artist {
+	font-size: 13px;
+}

@@ -13,4 +13,8 @@ class Option extends DataObject {
 		$this->IPAddress = $_SERVER['REMOTE_ADDR'];
 		parent::onBeforeWrite();
 	}
+	
+	private static $has_many = array(
+		"Votes"			=> "Vote"
+	);
 }

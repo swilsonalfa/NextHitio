@@ -7,8 +7,10 @@ class MainController extends Controller {
 	public function init() {
 		// Style and Javascript requirements
 		Requirements::css($this->ThemeDir()."/bootstrap/css/bootstrap.min.css");
+		Requirements::css($this->ThemeDir()."/css/nexthit.css");
 		Requirements::javascript($this->ThemeDir()."/js/jquery-1.11.3.min.js");
 		Requirements::javascript($this->ThemeDir()."/bootstrap/js/bootstrap.min.js");
+		Requirements::javascript($this->ThemeDir()."/js/typeahead.js");
 		Requirements::javascript($this->ThemeDir()."/js/code.js");
 		
 		parent::init();
