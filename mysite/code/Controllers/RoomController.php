@@ -2,12 +2,14 @@
 class RoomController extends MainController {
 	private static $allowed_actions = array(
 			'createajax',
-			'viewRoom'
+			'viewRoom',
+			'addOption'
 	);
 	
 	private static $url_handlers = array(
 			'' 				=> 'index',
 			'createajax' 	=> 'createajax',
+			'addOption'		=> 'addOption',
 			'$Room'			=> 'viewRoom'
 	);
 	
@@ -90,6 +92,54 @@ class RoomController extends MainController {
 					return json_encode($returnArray);
 					
 				}
+			}
+		}
+	}
+	
+	public function addOption() {
+		if($this->request->isAjax()) {
+			$songname = Convert::raw2sql($_POST['song']);
+			$roomID = Convert::raw2sql($_POST['roomid']);
+			$errors = array();
+			
+			if(empty($songname)) {
+				$errors[] = "You must enter a song name";
+			}
+			
+			if(empty($roomID)) {
+				$errors[] = "No Room ID sent. Try refreshing the page.";
+			}
+			
+			$room = Room::get_by_id("Room", (is_numeric($roomID) ? $roomID : null));
+			
+			if(!$room) {
+				$errors[] = "No room found. Try refreshing.";
+			}
+			
+			if($errors) {
+				$returnArray = array();
+					
+				$returnArray["success"] = false;
+				$returnArray["errorstring"] = "<div class=\"alert alert-info\">".implode(", ", $errors)."</div>";
+					
+				return json_encode($returnArray);
+			} else {
+				$jsonResponse = json_decode($_POST['lastFMResponse'], true);
+				
+				// Register a new option
+				$songOption = new SongOption();
+				$songOption->Song = $jsonResponse["title"];
+				$songOption->Artist = $jsonResponse["artist"];
+				$songOption->Image = $jsonResponse["img"];
+				$songOption->ParentID = $room->ID;
+				$songOption->write();
+				
+				$returnArray = array();
+					
+				$returnArray["success"] = true;
+				$returnArray["nextstep"] = "/room/".$room->Segment;
+					
+				return json_encode($returnArray);
 			}
 		}
 	}

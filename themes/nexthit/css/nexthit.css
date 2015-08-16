@@ -10,3 +10,29 @@
 #songResult .artist {
 	font-size: 13px;
 }
+
+#songListing {
+	padding: 0;
+	margin: 0;
+}
+
+#songListing li {
+	list-style: none;
+	padding: 5px;
+	background: #dcdcdc;
+	margin-bottom: 10px;
+}
+
+#songListing .img {
+	float: left;
+	padding: 5px;
+}
+
+#songListing .title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#songListing .buttons {
+	float: right;
+}

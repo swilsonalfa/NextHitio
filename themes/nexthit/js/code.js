@@ -27,15 +27,17 @@ $(document).ready(function(){
 	
 	$('input.typeahead').typeahead({
 		onSelect: function(item) {
-	        console.log(item);
+	        console.log(item.value);
+	        $('#lastFMResponse').val(item.value);
 	    },
-	    item: '<li id="songResult"><a href="#"></a></li><div style="clear: both;"></div>',
+	    item: '<li id="songResult"><a href="#"></a></li>',
 		ajax: {
 			url: "/song",
 			timeout: 500,
 			loadingClass: "loading",
 			triggerLength: 3,
-			displayField: 'html'
+			displayField: 'html',
+			valueField: 'id'
 		}
 	});
 });

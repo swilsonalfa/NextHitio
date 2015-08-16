@@ -50,8 +50,9 @@ class SongSearchController extends Controller {
 		
 		foreach($lastFMreturn["results"]["trackmatches"]["track"] as $track) {
 			$image = $track["image"][1]["#text"];
-			$responses[] = array("title" => $track["name"], "artist" => $track["artist"], "image" => $image,
-				"html" => "<span class=\"img\"><img src=\"$image\"></span><span class=\"title\">$track[name]</span><span class=\"artist\">$track[artist]</span>"
+			$serialise = json_encode(array("title" => $track["name"], "artist" => $track["artist"], "img" => $image));
+			$responses[] = array("id" => $serialise,
+				"html" => "<span class=\"img\"><img src=\"$image\"></span><span class=\"title\">$track[name]</span><br /><span class=\"artist\">$track[artist]</span>"
 			);
 		}
 		
