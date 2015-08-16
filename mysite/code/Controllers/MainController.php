@@ -31,6 +31,16 @@ class MainController extends Controller {
 			Session::clear("SessionError");
 		}
 		
-		return $this->customise(array("Content" => $this->renderWith("index", array($this, "SessionError" => $sessionError))));
+		$array = array(
+			"Sarah's Birthday",
+			"Tom's Birthday",
+			"Sam's Party",
+			"Some party",
+			"Unihack 2016"
+		);
+		
+		$texttoshow = $array[rand(0,4)];
+		
+		return $this->customise(array("Content" => $this->renderWith("index", array($this, "SessionError" => $sessionError, "showtext" => $texttoshow))));
 	}
 }

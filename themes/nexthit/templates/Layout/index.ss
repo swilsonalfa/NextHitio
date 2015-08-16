@@ -9,7 +9,7 @@
     <form class="form-inline ajaxform" method="post" name="roomform" action="/room/createajax">
 	  <div class="form-group">
 	    <label for="eventname">My event is called</label>
-	    <input type="text" class="form-control" id="eventname" name="eventname" placeholder="Sarah's Birthday">
+	    <input type="text" class="form-control" id="eventname" name="eventname" placeholder="$showtext">
 	  </div>
 	  <button type="submit" class="btn btn-success">Create</button>
 	</form>
