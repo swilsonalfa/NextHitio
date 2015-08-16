@@ -21,4 +21,18 @@ class Room extends DataObject {
 	private static $has_many = array(
 		"Options"		=> "Option"
 	);
+	
+	public function sortedOptions() {
+		$options = $this->Options();
+		$newList = new ArrayList();
+		
+		// Add to new list
+		foreach($options as $option) {
+			//$option->Position = $option->getPos();
+			$newList->add($option);
+			$newList->byID($option->ID)->Position = $option->getPos();
+		}
+		
+		return $newList->sort('Position DESC');
+	}
 }

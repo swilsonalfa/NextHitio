@@ -29,7 +29,7 @@
         <div class="row">
         	<div class="col-md-12">
         		<ul id="songListing">
-        		<% loop $Room.Options %>
+        		<% loop $Room.sortedOptions %>
         		<li>
         			<span class="img">
         				<img src="$Image">
@@ -37,7 +37,7 @@
         			
         			<span class="title">$Song</span><br />
         			<span class="artist">$Artist</span>
-        			
+        			$Position
         			<div class="buttons">
         			<button class="btn btn-success"><i class="glyphicon glyphicon-menu-up"></i></button> <button class="btn btn-danger"><i class="glyphicon glyphicon-menu-down"></i></button>
         			</div>
